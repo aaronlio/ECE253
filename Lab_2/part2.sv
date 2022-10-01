@@ -100,7 +100,7 @@ module mux2to1(x, y, s, m);
     v7432 y_s_or_x_ns(
         .pin1(x_ns),
         .pin2(y_s),
-        .pin3(m))
+        .pin3(m));
     
 
 endmodule  
