@@ -38,10 +38,10 @@ module v7408 (pin1, pin3, pin5, pin9, pin11, pin13, pin2, pin4, pin6, pin8, pin1
     output logic pin11;
     output logic pin8;
 
-    assign pin3 = pin1 | pin2;
-    assign pin6 = pin4 | pin5;
-    assign pin11 = pin13 | pin12;
-    assign pin8 = pin9 | pin10;
+    assign pin3 = pin1 & pin2;
+    assign pin6 = pin4 & pin5;
+    assign pin11 = pin13 & pin12;
+    assign pin8 = pin9 & pin10;
 endmodule 
 
 
@@ -61,10 +61,10 @@ module v7432 (pin1, pin3, pin5, pin9, pin11, pin13, pin2, pin4, pin6, pin8, pin1
     output logic pin11;
     output logic pin8;
 
-    assign pin3 = pin1 & pin2;
-    assign pin6 = pin4 & pin5;
-    assign pin11 = pin13 & pin12;
-    assign pin8 = pin9 & pin10;
+    assign pin3 = pin1 | pin2;
+    assign pin6 = pin4 | pin5;
+    assign pin11 = pin13 | pin12;
+    assign pin8 = pin9 | pin10;
 
 endmodule 
 
@@ -73,9 +73,32 @@ module mux2to1(x, y, s, m);
     input logic y; //select 1
     input logic s; //select signal
     output logic m; //output
-  
-    //assign m = s & y | ~s & x;
-    // OR
-    assign m = s ? y : x;
+    
+    logic not_s; 
+    logic x_ns;
+    logic y_s;
+
+    v7404 nots(
+        .pin1[s],
+        .pin2[not_s]
+        );
+
+    v7408 xandnots(
+        .pin1[x],
+        .pin2[not_s],
+        .pin3[x_ns]
+        );
+
+    v7408 yands(
+        .pin13[y],
+        .pin12[s],
+        .pin11[y_s]
+        );
+    
+    v7432 y_s_or_x_ns(
+        .pin1[x_ns],
+        .pin2[y_s],
+        .pin3[m])
+    
 
 endmodule  
