@@ -16,16 +16,3 @@ module mux(LEDR, SW);
         .m(LEDR[0])
         );
 endmodule
-
-
-module mux2to1(x, y, s, m);
-    input logic x; //select 0
-    input logic y; //select 1
-    input logic s; //select signal
-    output logic m; //output
-  
-    //assign m = s & y | ~s & x;
-    // OR
-    assign m = s ? y : x;
-
-endmodule
