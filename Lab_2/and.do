@@ -6,7 +6,7 @@ vlib work
 vlog part2.sv
 
 #load simulation using mux as the top level simulation module
-vsim 7432
+vsim v7432
 
 #log all signals and add some signals to waveform window
 log {/*}
