@@ -23,6 +23,7 @@ module v7432 (pin1, pin3, pin5, pin9, pin11, pin13, pin2, pin4, pin6, pin8, pin1
     assign pin6 = pin4 & pin5;
     assign pin11 = pin13 & pin12;
     assign pin8 = pin8 & pin10;
+    
 endmodule 
 
 module mux2to1(x, y, s, m);
