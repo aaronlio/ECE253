@@ -1,23 +1,23 @@
-module part3(A, B, Function, ALUout);
+module part3(A, B, Function, ALUOut);
     parameter N = 4;
     input logic [N-1:0]A, B;
     input logic[N-3:0] Function;
-    output logic [(N*2)-1:0] ALUout;
+    output logic [(N*2)-1:0] ALUOut;
 
 
     always_comb
     begin
         case(Function)
         2'b00: 
-            ALUout = A + B;
+            ALUOut = A + B;
         2'b01:
-            ALUout = | {A,B}; // 1 = 8b'00000001
+            ALUOut = | {A,B}; // 1 = 8b'00000001
         2'b10:
-            ALUout = & {A,B};
+            ALUOut = & {A,B};
         2'b11:
-            ALUout = {A,B};
+            ALUOut = {A,B};
         default:
-            ALUout = 0;
+            ALUOut = 0;
         endcase
     end
 endmodule
