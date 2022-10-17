@@ -1,8 +1,8 @@
 module part3(A, B, Function, ALUout);
     parameter N = 4;
-    input logic [3:0]A, B;
-    input logic[1:0] Function;
-    output logic [7:0] ALUout;
+    input logic [N-1:0]A, B;
+    input logic[N-3:0] Function;
+    output logic [(N*2)-1:0] ALUout;
 
 
     always_comb
