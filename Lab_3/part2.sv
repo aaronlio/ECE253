@@ -12,7 +12,7 @@ module part2(A, B, Function, ALUOut);
     begin
         case(Function)
         2'b00: 
-            ALUOut = {0,0,0,filler_cout[3],filler_sum[3:0]};
+            ALUOut = {3'b000,filler_cout[3],filler_sum[3:0]};
         2'b01:
             ALUOut = | {A,B};
         2'b10:
