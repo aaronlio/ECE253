@@ -14,9 +14,9 @@ module test_part_2(SW, KEY, LEDR, HEX0);
 	
 
 	part2 u0(.A(SW[7:4]), .B(SW[3:0]), .Function(KEY[1:0]), .ALUOut(LEDR[7:0]));
-	hex_decoder h0(.c(SW[7:4]), .display(HEX[2]));
-	hex_decoder h1(.c(SW[3:0]), .display(HEX[0]));
-	hex_decoder h2(.c(LEDR[7:0]), .display(HEX[4:3]));
+	hex_decoder h0(.c(SW[7:4]), .display(HEX0[2]));
+	hex_decoder h1(.c(SW[3:0]), .display(HEX0[0]));
+	hex_decoder h2(.c(LEDR[7:0]), .display(HEX0[4:3]));
 	
 endmodule
 /* 
