@@ -11,16 +11,16 @@ module part2(A, B, Function, ALUout);
     begin
         case(Function)
         2'b00: 
-            ALUout[3:0] = filler[3:0]
-            ALUout[4] = filler[4]
+            ALUout[3:0] = filler[3:0];
+            ALUout[4] = filler[4];
         2'b01:
-            ALUout = | {A,B}
+            ALUout = | {A,B};
         2'b10:
-            ALUout = & {A,B}
+            ALUout = & {A,B};
         2'b11:
-            ALUout = {A,B}
+            ALUout = {A,B};
         default:
-            ALUout[7:0] = 8'b00000000
+            ALUout[7:0] = 8'b00000000;
         endcase
     end
 endmodule
