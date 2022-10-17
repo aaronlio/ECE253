@@ -1,10 +1,10 @@
-module test_part_1(SW, KEY, LEDR, HEX0);
+/*module test_part_1(SW, KEY, LEDR, HEX0);
 	input logic [8:0] SW;
 	input logic [9:0] LEDR;
 
-	part1 u0(.a(SW[7:4]), .b(SW[3:0]), .c_in(SW[8]), .s(LEDR[3:0]), .c_out(LEDR[9:6]);	
+	part1 u0(.a(SW[7:4]), .b(SW[3:0]), .c_in(SW[8]), .s(LEDR[3:0]), .c_out(LEDR[9:6]));	
 endmodule
-
+*/
 
 module test_part_2(SW, KEY, LEDR, HEX0);
 	input logic [8:0] SW;
@@ -13,10 +13,10 @@ module test_part_2(SW, KEY, LEDR, HEX0);
  	output logic [6:0] HEX0;
 	
 
-	part2 u0(.A(SW[7:4]), .B(SW[3:0]), .Function(KEY[1:0]), .ALUOut(LEDR[7:0]);
-	hex_decoder h0(.c(SW[7:4], .display(HEX[2]));
-	hex_decoder h1(.c(SW[3:0], .display(HEX[0]));
-	hex_decoder h2(.c(LEDR[7:0], .display(HEX[4], HEX[3]));
+	part2 u0(.A(SW[7:4]), .B(SW[3:0]), .Function(KEY[1:0]), .ALUOut(LEDR[7:0]));
+	hex_decoder h0(.c(SW[7:4], .display(HEX[2])));
+	hex_decoder h1(.c(SW[3:0], .display(HEX[0])));
+	hex_decoder h2(.c(LEDR[7:0], .display(HEX[4], HEX[3])));
 	
 endmodule
 /* 
