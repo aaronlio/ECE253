@@ -21,7 +21,7 @@ module part2(A, B, Function, ALUout);
             ALUout = {A,B}
         default:
             ALUout[7:0] = 8'b00000000
-
+        endcase
     end
 endmodule
 
