@@ -3,7 +3,6 @@ module part3(A, B, Function, ALUout);
     input logic [3:0]A, B;
     input logic[1:0] Function;
     output logic [7:0] ALUout;
-    logic [7:0] filler;
 
 
     always_comb
