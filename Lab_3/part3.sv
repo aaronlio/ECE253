@@ -22,6 +22,6 @@ module part3(A, B, Function, ALUOut);
     end
 endmodule
 
-module test_part_3(input logic [7:0]SW, input logic [1:0]KEY, output logic [7:0] ALUOut);
+module test_part_3(input logic [7:0]SW, input logic [1:0]KEY, output logic [7:0] LEDR);
     part3 #(3) u0(.A(SW[5:3]), .B(SW[2:0]), .Function(KEY[1:0]), .ALUOut(LEDR[7:0]));
     
