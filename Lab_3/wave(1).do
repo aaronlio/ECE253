@@ -6,7 +6,7 @@ vlib work
 vlog part3.sv
 
 #load simulation using mux as the top level simulation module
-vsim testing
+vsim test_part_3
 
 #log all signals and add some signals to waveform window
 log {/*}
