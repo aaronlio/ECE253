@@ -21,11 +21,11 @@ module part1(a, b, c_in, s, c_out);
 endmodule
 
 
-module part2(A, B, Function, ALUOut);
+module part2(A, B, Function, ALUout);
     input logic [3:0] A;
     input logic [3:0] B;
     input logic[1:0] Function;
-    output logic [7:0] ALUOut;
+    output logic [7:0] ALUout;
     logic [3:0] filler_sum;
     logic [3:0] filler_cout;
     part1 u0(A[3:0], B[3:0], 0, filler_sum[3:0], filler_cout[3:0]);
@@ -35,15 +35,15 @@ module part2(A, B, Function, ALUOut);
     begin
         case(Function)
         2'b00: 
-            ALUOut = {3'b000,filler_cout[3],filler_sum[3:0]};
+            ALUout = {3'b000,filler_cout[3],filler_sum[3:0]};
         2'b01:
-            ALUOut = | {A,B};
+            ALUout = | {A,B};
         2'b10:
-            ALUOut = & {A,B};
+            ALUout = & {A,B};
         2'b11:
-            ALUOut = {A,B};
+            ALUout = {A,B};
         default:
-            ALUOut[7:0] = 8'b00000000;
+            ALUout[7:0] = 8'b00000000;
         endcase
     end
 endmodule
