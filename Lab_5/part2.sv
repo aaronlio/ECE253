@@ -13,7 +13,7 @@ module RateDivider #(parameter CLOCK_FREQUENCY = 500) (input logic ClockIn, inpu
     
     logic [$clog2(CLOCK_FREQUENCY) + 1:0] RateDividerCounter;
     
-    assign Enable = (RateDividerCount == 'b0)?'1:'0;
+    assign Enable = (RateDividerCounter == 'b0)?'1:'0;
     
     always_ff(posedge ClockIn)
         if (Reset)
