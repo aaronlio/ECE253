@@ -20,7 +20,7 @@ logic [$clog2(CLOCK_FREQUENCY/2) - 1:0] RateDividerCounter;
             start_hold <= 0;
             morse <= 12'b000000000000;
         end  
-        else if (Start)
+        if (Start)
         begin
             start_hold <= 1;
             RateDividerCounter <= (CLOCK_FREQUENCY / 2) - 1;
@@ -38,12 +38,12 @@ logic [$clog2(CLOCK_FREQUENCY/2) - 1:0] RateDividerCounter;
             endcase
         end
 
-        else if (start_hold) 
+        if (start_hold) 
         begin
             RateDividerCounter <= RateDividerCounter - 1;
         end  
 
-        else if (NewBitOut)
+        if (NewBitOut)
         begin
             RateDividerCounter <= (CLOCK_FREQUENCY / 2) - 1;
             morse <= morse << 1;
