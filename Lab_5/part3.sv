@@ -11,7 +11,7 @@ logic [12:0] morse;
 logic start_hold;
 logic [$clog2(CLOCK_FREQUENCY) + 1:0] RateDividerCounter;
 
-    assign NewBitOut = (RateDividerCounter == ’b0)?’1:’0;
+    assign NewBitOut = (RateDividerCounter == 'b0)?'1:'0;
 
     always_ff(posedge ClockIn)
     begin
@@ -55,35 +55,9 @@ logic [$clog2(CLOCK_FREQUENCY) + 1:0] RateDividerCounter;
 endmodule
 
 
-module RateDivider #(parameter CLOCK_FREQUENCY = 500) (input logic ClockIn, input logic Reset, input logic Start, output logic Enable);
-    
-    logic [$clog2(CLOCK_FREQUENCY) + 1:0] RateDividerCounter;
-    
-    assign Enable = (RateDividerCount == ’b0)?’1:’0;
-    
-    always_ff(posedge ClockIn)
-        if (Reset & s)
-            begin 
-                if (Start)
-                    begin
-                        RateDividerCounter <= (CLOCK_FREQUENCY / 2) - 1;
-                    end
-            end
-        else
-            begin
-                RateDividerCounter <= RateDividerCounter - 1;
-            end
 
-endmodule
 
-module shift_register(input logic ClockIn, input logic ParallelLoadn, input logic reset )
 
-// A - 101110000000
-// B - 111010101000
-// C - 111010111010
-// D - 111010100000
-// E - 100000000000
-// F - 101011101000
-// G - 111011101000
-// H - 101010100000
+
+
 
