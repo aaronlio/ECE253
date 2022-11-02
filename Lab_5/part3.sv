@@ -9,7 +9,7 @@ output logic NewBitOut);
 
 logic [12:0] morse;
 logic start_hold;
-logic [$clog2(CLOCK_FREQUENCY*4) - 1:0] RateDividerCounter;
+logic [$clog2(CLOCK_FREQUENCY/2) - 1:0] RateDividerCounter;
 
     assign NewBitOut = (RateDividerCounter == 'b0)?'1:'0;
 
