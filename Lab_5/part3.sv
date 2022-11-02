@@ -7,7 +7,7 @@ input logic [2:0] Letter,
 output logic DotDashOut,
 output logic NewBitOut);
 
-logic [12:0] morse;
+logic [11:0] morse;
 logic start_hold;
 logic [$clog2(CLOCK_FREQUENCY/2) - 1:0] RateDividerCounter;
 
@@ -36,7 +36,6 @@ logic [$clog2(CLOCK_FREQUENCY/2) - 1:0] RateDividerCounter;
                 3'b111: morse <= 12'b101010100000;
                 default:morse <= 12'b000000000000;
             endcase
-            
         end
 
         else if (start_hold) 
