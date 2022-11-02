@@ -13,7 +13,7 @@ logic [$clog2(CLOCK_FREQUENCY) + 1:0] RateDividerCounter;
 
     assign NewBitOut = (RateDividerCounter == 'b0)?'1:'0;
 
-    always_ff(posedge ClockIn)
+    always_ff@(posedge ClockIn)
     begin
         if (Reset)
         begin
