@@ -170,6 +170,7 @@ module control(
             end
             S_CYCLE_3: begin // A <- Ax*x + Bx
                 ld_a = 1'b1;
+                ld_alu_out = 1'b1; // store result in result register
                 alu_select_b = 2'b01;
             end
             S_CYCLE_4: begin // r <- Ax*x+ Bx + C
@@ -251,7 +252,7 @@ module datapath(
         case (alu_select_b)
             2'd00: alu_a = a;
             2'd01: alu_a = b;
-            2'd10: alu_a = x;
+            2'd10: alu_a = c;
             2'd11: alu_a = x;
             default: alu_b = 8'b0;
         endcase
