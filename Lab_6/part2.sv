@@ -239,18 +239,18 @@ module datapath(
     // The ALU input logic multiplexers
     always_comb begin
         case (alu_select_a)
-            1'd0: alu_a = a;
-            1'd1: alu_a = b;
-            1'd2: alu_a = c;
-            1'd3: alu_a = x;
+            2'b00: alu_a = a;
+            2'b01: alu_a = b;
+            2'b10: alu_a = c;
+            2'b11: alu_a = x;
             default: alu_a = 8'b0;
         endcase
 
         case (alu_select_b)
-            1'd0: alu_a = a;
-            1'd1: alu_a = b;
-            1'd2: alu_a = c;
-            1'd3: alu_a = x;
+            2'b00: alu_a = a;
+            2'b01: alu_a = b;
+            2'b10: alu_a = c;
+            2'b11: alu_a = x;
             default: alu_b = 8'b0;
         endcase
     end
