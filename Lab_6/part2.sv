@@ -152,14 +152,12 @@ module control(
             S_CYCLE_0: begin // Do A <- A*x
                 ld_alu_out = 1'b1; 
                 ld_a = 1'b1; // store result back into A
-                alu_select_a = 2'b00; // Select register A
                 alu_select_b = 2'b11; // Also select register A
                 alu_op = 1'b1; // Do multiply operation
             end
             S_CYCLE_1: begin // A <- Ax*x
                 ld_alu_out = 1'b1; // store result in result register
                 ld_a = 1'b1; // store result back into A
-                alu_select_a = 2'b00; // Select register A
                 alu_select_b = 2'b11; // Select register B
                 alu_op = 1'b1; // Do Add operation
             end
@@ -172,15 +170,11 @@ module control(
             end
             S_CYCLE_3: begin // A <- Ax*x + Bx
                 ld_a = 1'b1;
-                alu_select_a = 2'b00;
                 alu_select_b = 2'b01;
-                alu_op = 1'b0;
             end
             S_CYCLE_4: begin // r <- Ax*x+ Bx + C
                 ld_r = 1'b1;
-                alu_select_a = 2'b00;
                 alu_select_b = 2'b10;
-                alu_op = 1'b0;
             end
         // We don't need a default case since we already made sure all of our outputs were assigned a value at the start of the always block.
         endcase
