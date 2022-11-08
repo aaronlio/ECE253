@@ -172,7 +172,7 @@ module control(
             end
             S_CYCLE_4: begin // r <- Ax*x+ Bx + C
                 ld_r = 1'b1;
-                alu_select_b = 2'b10;
+                alu_select_b = 2'b01;
             end
         // We don't need a default case since we already made sure all of our outputs were assigned a value at the start of the always block.
         endcase
