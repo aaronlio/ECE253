@@ -86,9 +86,7 @@ module control(
                                 S_CYCLE_1       = 'd10,
                                 S_CYCLE_2       = 'd11,
                                 S_CYCLE_3       = 'd12,
-                                S_CYCLE_4       = 'd13
-                                
-                                } statetype;
+                                S_CYCLE_4       = 'd13} statetype;
                                 
     statetype current_state, next_state;                            
 
@@ -241,18 +239,18 @@ module datapath(
     // The ALU input logic multiplexers
     always_comb begin
         case (alu_select_a)
-            2'd00: alu_a = a;
-            2'd01: alu_a = b;
-            2'd10: alu_a = c;
-            2'd11: alu_a = x;
+            1'd0: alu_a = a;
+            1'd1: alu_a = b;
+            1'd2: alu_a = c;
+            1'd3: alu_a = x;
             default: alu_a = 8'b0;
         endcase
 
         case (alu_select_b)
-            2'd00: alu_a = a;
-            2'd01: alu_a = b;
-            2'd10: alu_a = c;
-            2'd11: alu_a = x;
+            1'd0: alu_a = a;
+            1'd1: alu_a = b;
+            1'd2: alu_a = c;
+            1'd3: alu_a = x;
             default: alu_b = 8'b0;
         endcase
     end
