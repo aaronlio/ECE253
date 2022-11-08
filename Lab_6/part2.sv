@@ -164,7 +164,7 @@ module control(
             S_CYCLE_2: begin // B <- B*x
                 ld_b = 1'b1;
                 ld_alu_out = 1'b1; // store result in result register
-                alu_select_a = 2'b01;
+                alu_select_a = 2'b11;
                 alu_select_b = 2'b11;
                 alu_op = 1'b1;
             end
