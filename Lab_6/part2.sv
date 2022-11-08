@@ -211,7 +211,7 @@ module datapath(
     );
 
     // input logic logicisters
-    logic [7:0] a, b;
+    logic [7:0] a, b, c, x;
 
     // output logic of the alu
     logic [7:0] alu_out;
