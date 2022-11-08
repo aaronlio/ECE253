@@ -172,13 +172,11 @@ module control(
             end
             S_CYCLE_3: begin // A <- Ax*x + Bx
                 ld_a = 1'b1;
-                ld_alu_out = 1'b1; // store result in result register
                 alu_select_a = 2'b00;
                 alu_select_b = 2'b01;
                 alu_op = 1'b0;
             end
             S_CYCLE_4: begin // r <- Ax*x+ Bx + C
-                ld_alu_out = 1'b0; // store result in result register
                 ld_r = 1'b1;
                 alu_select_a = 2'b00;
                 alu_select_b = 2'b10;
