@@ -251,7 +251,7 @@ module datapath(
         case (alu_select_b)
             2'd00: alu_a = a;
             2'd01: alu_a = b;
-            2'd10: alu_a = c;
+            2'd10: alu_a = x;
             2'd11: alu_a = x;
             default: alu_b = 8'b0;
         endcase
