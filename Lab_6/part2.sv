@@ -107,7 +107,6 @@ module control(
             
 
             // TODO: Add states for other inputs here.
-            
             S_CYCLE_0: next_state = S_CYCLE_1;
             S_CYCLE_1: next_state = S_CYCLE_2;
             S_CYCLE_2: next_state = S_CYCLE_3;
@@ -152,30 +151,32 @@ module control(
             S_CYCLE_0: begin // Do A <- A*x
                 ld_alu_out = 1'b1; 
                 ld_a = 1'b1; // store result back into A
-                alu_select_b = 2'b11; // Also select register A
+                alu_select_b = 2'b11; // select x
                 alu_op = 1'b1; // Do multiply operation
             end
             S_CYCLE_1: begin // A <- Ax*x
                 ld_alu_out = 1'b1; // store result in result register
                 ld_a = 1'b1; // store result back into A
-                alu_select_b = 2'b11; // Select register B
-                alu_op = 1'b1; // Do Add operation
+                alu_select_b = 2'b11; // select x
+                alu_op = 1'b1; // Do multiply operation
             end
             S_CYCLE_2: begin // B <- B*x
                 ld_b = 1'b1;
                 ld_alu_out = 1'b1; // store result in result register
-                alu_select_a = 2'b11;
-                alu_select_b = 2'b11;
-                alu_op = 1'b1;
+                alu_select_a = 2'b01; // Select B
+                alu_select_b = 2'b11; // select x
+                alu_op = 1'b1; // Do multiply operation
             end
             S_CYCLE_3: begin // A <- Ax*x + Bx
                 ld_a = 1'b1;
                 ld_alu_out = 1'b1; // store result in result register
                 alu_select_b = 2'b01;
+                alu_op = 1'b0; // Do add operation
             end
             S_CYCLE_4: begin // r <- Ax*x+ Bx + C
                 ld_r = 1'b1;
                 alu_select_b = 2'b10;
+                alu_op = 1'b0; // Do add operation
             end
         // We don't need a default case since we already made sure all of our outputs were assigned a value at the start of the always block.
         endcase
