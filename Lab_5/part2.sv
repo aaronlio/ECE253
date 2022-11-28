@@ -16,6 +16,7 @@ module RateDivider #(parameter CLOCK_FREQUENCY = 500) (input logic ClockIn, inpu
     assign Enable = (RateDividerCounter == 'b0)?'1:'0;
     
     always_ff@(posedge ClockIn)
+    begin
         if (Reset|Enable)
         begin 
             case (Speed)
@@ -27,7 +28,7 @@ module RateDivider #(parameter CLOCK_FREQUENCY = 500) (input logic ClockIn, inpu
             endcase
         end
         else RateDividerCounter <= RateDividerCounter - 1;
-
+    end
 endmodule
 
 module DisplayCounter (input logic Clock, input logic Reset, input logic EnableDC, output logic [3:0] CounterValue);
