@@ -4,11 +4,11 @@
 	# t1: outer loop index (s1)
 	# t2: inner loop index (s2)
 	# t3: 1
-	# t4: holds current list index
+
 	# t5: holds next list index
 	# t6: holds list shifted to next word
 	# a1: holds list (current item at index zero)
-	# a2:
+	# a2: holds shifted list
 	
 
 .global _start
@@ -20,46 +20,42 @@ _start:
 	addi t1, s1, 1 #outer loop index
 	addi t2, zero, 1 # inner loop index
 	
+	
 	addi t3, zero, 1 # register to hold constant value 1
 
 	
 LOOP_size:
 	beq t1, t3, END #when the outer loop size is 1 the list is sorted
 	sub t1, t1, t3 # decrement outer loop
-	add t2, zero, t3 #reset t2 to 1
+	mv t2, t3 #reset t2 to 1
 	
 LOOP:
 	beq t1, t2, LOOP_size 
 	
-	slli a1, t2, 2 # add 4 to t4 to get next elem index in list
+	slli a1, t2, 2 # j * 4 to get next elem address in list
 	add a1, a1, s2
 	
-	addi a2, a1, 4
+	#addi a2, a1, 4
 	
 	jal SWAP
 	add t2, t2, t3
 	j LOOP
-	
-	
 
 SWAP: 
 	lw t5, 0(a1)
-	lw t6, 0(a2)
-	
+	#lw t6, 0(a2)
+	lw t6, 4(a1)
 	bgt t6, t5, CORRECT_ORDER
 	
-	sw t5, 0(a2)
 	sw t6, 0(a1)
+	sw t5, 4(a1)
 	
 	addi a0, zero, 1
-	j RETURN
+	jr ra
 
 CORRECT_ORDER:
 	addi a0, zero, 0
-	j RETURN
-RETURN:
 	jr ra
-
 END: 
 	ebreak
 	
