@@ -44,7 +44,14 @@ LOOP:
 	
 
 SWAP: 
-	bgt a2, a1, CORRECT_ORDER
+	lw t5, 0(a1)
+	lw t6, 0(a2)
+	
+	bgt t6, t5, CORRECT_ORDER
+	
+	sw t5, 0(a2)
+	sw t6, 0(a1)
+	
 	addi a0, zero, 1
 	j RETURN
 
