@@ -26,16 +26,15 @@ _start:
 LOOP_size:
 	beq t1, t3, END #when the outer loop size is 1 the list is sorted
 	sub t1, t1, t3 # decrement outer loop
-	add t2, zero, t3 #reset t4 to 1
+	add t2, zero, t3 #reset t2 to 1
 	
 LOOP:
-	ble t1, t2, LOOP_size 
+	beq t1, t2, LOOP_size 
 	
-	slli a1, t2, 4 # add 4 to t4 to get next elem index in list
+	slli a1, t2, 2 # add 4 to t4 to get next elem index in list
 	add a1, a1, s2
 	
 	addi a2, a1, 4
-	
 	
 	jal SWAP
 	add t2, t2, t3
