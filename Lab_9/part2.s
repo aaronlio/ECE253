@@ -1,9 +1,9 @@
 .data
 
 # Messages
-msg_1: .asciz "Please take a deep breath "
-msg_2: .asciz "Please drink some water "
-msg_3: .asciz "Please give your eyes a break "
+msg_1: .asciz "Please take a deep breath      "
+msg_2: .asciz "Please drink some water        "
+msg_3: .asciz "Please give your eyes a break  "
 
 # Timer Related
 timeNow: .word 0xFFFF0018 # current time
@@ -15,11 +15,13 @@ cmp: .word 0xFFFF0020 # time for new interrupt
 .eqv OUT 0xffff000C
 
 main:
-	la s0, timeNow
-	la s1, cmp
+	lw s0, timeNow
+	lw s1, cmp
 	# Set time to trigger interrupt to be 5000 milliseconds (5 seconds)
 	li s2, 5000
 	sw s2, 0(s1)
+	la s3, msg_1
+	li s6, 268501088
 
 	# Set the handler address and enable interrupts
 	la t0, timer_handler
@@ -29,14 +31,17 @@ main:
 	
 	li s7, 0xFFFF000c # Transmitter data register (bottom 8 bits)
 	li s8, 0xFFFF0008 # Transmitter control register (bottom bit)
+	
 	li t5, 0
 	li t6, 32
+	
+	addi t4, zero, 0
 	
 	
 	# Loop over the messages
 LOOP:
-	la s3, msg_1 
-	bne s1, s2, LOOP
+	beqz t4, LOOP
+	jal pick_word
 
 LOOP_BYTES:
 	lb s4, 0(s3) # Load in letter
@@ -47,8 +52,16 @@ LOOP_BYTES:
 	bne t5, t6, LOOP_BYTES
 	
 	li t5, 0
+	addi t4, t4, -1
 	j LOOP
 
+pick_word:
+	beq s3, s6, subtract
+	jr ra
+	
+subtract:
+	addi, s3, s3, -96
+	jr ra
 
 timer_handler:
 # Push registers to the stack
@@ -58,10 +71,15 @@ timer_handler:
 	sw s1, 4(sp)
 	sw s2, 8(sp)
 	
+	addi t4, t4, 1
 	# Indicate that 5 seconds have passed
-	la s0, timeNow
-	la s1, cmp
-	li s2, 5000
+	li s0, 0xFFFF0018
+	li s1, 0xFFFF0020
+	
+	lw s2, 0(s0)
+	li a7, 5000
+	
+	add s2, s2, a7
 	sw s2, 0(s1)
 
 	# Pop registers from the stack

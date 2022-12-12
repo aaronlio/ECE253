@@ -21,6 +21,8 @@ li s0, 0xFFFF0018
 li s8, 0xFFFF0020
 lw s1, 0(s0) # 5000 milliseconds
 li s9, 5000
+
+
 add s1, s1, s9
 sw s1, 0(s8) # set timer value for interrupt
 
